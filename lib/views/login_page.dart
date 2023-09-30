@@ -5,22 +5,21 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '../widgets/alerts/alerta_generica.dart';
 import '../widgets/buttons/button_login.dart';
-import '../widgets/fields/input_decorations.dart';
 import 'home_page.dart';
 
 // ignore: camel_case_types
-class loginPage extends StatefulWidget {
-  const loginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _loginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-// ignore: camel_case_types
-class _loginPageState extends State<loginPage> {
-  final usernameCrtl = TextEditingController();
-  final passwordCrtl = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
+  final usernameCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
   bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     var authService = Provider.of<AuthService>(context);
@@ -30,70 +29,79 @@ class _loginPageState extends State<loginPage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           margin: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              Image.asset("assets/images/logo.png", height: 150,),
-              const SizedBox(height: 30),
-              TextFieldGeneric(
-                textController: usernameCrtl, hintText: 'Usuario', labelText: 'Usuario', keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 15),
-              TextFormField(
-                controller: passwordCrtl,
-                obscureText: _obscureText,
-                decoration: InputDecorations.authInputDecoration(
-                  hintText: 'Password',
-                  labelText: 'Password',
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/logo.png",
+                  height: 150,
+                ),
+                const SizedBox(height: 15),
+                const Text(
+                  'Sign in.',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              MyLoginButton(
-                onPressed: () async {
-                  final username = usernameCrtl.text.trim();
-                  final password = passwordCrtl.text.trim();
+                const SizedBox(height: 15),
+                TextFieldGeneric(
+                  textController: usernameCtrl,
+                  hintText: 'Usuario',
+                  labelText: 'Usuario',
+                  keyboardType: TextInputType.name,
+                  obscureText: false,
+                ),
+                const SizedBox(height: 15),
+                TextFieldGeneric(
+                  textController: passwordCtrl,
+                  hintText: 'Contraseña',
+                  labelText: 'Contraseña',
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: _obscureText,
+                  onPressed: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                ),
+                const SizedBox(height: 15),
+                MyLoginButton(
+                  onPressed: () async {
+                    final username = usernameCtrl.text.trim();
+                    final password = passwordCtrl.text.trim();
 
-                  if (username.isEmpty || password.isEmpty) {
-                    mostrarAlerta(context, 'Campos vacíos',
-                        'Por favor, complete todos los campos');
-                    return;
-                  }
+                    if (username.isEmpty || password.isEmpty) {
+                      mostrarAlerta(context, 'Campos vacíos',
+                          'Por favor, complete todos los campos');
+                      return;
+                    }
 
-                  authService.autenticando = true;
+                    authService.autenticando = true;
 
-                  final loginOk = await authService.login(username, password);
+                    final loginOk = await authService.login(username, password);
 
-                  authService.autenticando = false;
+                    authService.autenticando = false;
 
-                  if (loginOk != null) {
-                    // ignore: use_build_context_synchronously
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    );
-                  } else {
-                    // ignore: use_build_context_synchronously
-                    mostrarAlerta(
-                        context, 'Login erroneo', 'Verifique sus datos');
-                  }
-                },
-                enabled: !authService.autenticando,
-                loading: authService
-                    .autenticando, 
-              ),
-              const SizedBox(height: 15),
-            ],
+                    if (loginOk != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
+                    } else {
+                      mostrarAlerta(
+                          context, 'Login erróneo', 'Verifique sus datos');
+                    }
+                  },
+                  enabled: !authService.autenticando,
+                  loading: authService.autenticando,
+                ),
+                const SizedBox(height: 15),
+              ],
+            ),
           ),
         ),
       ),
