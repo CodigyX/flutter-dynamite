@@ -49,16 +49,16 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 15),
                 TextFieldGeneric(
                   textController: usernameCtrl,
-                  hintText: 'Usuario',
-                  labelText: 'Usuario',
+                  hintText: 'Username',
+                  labelText: 'Username',
                   keyboardType: TextInputType.name,
                   obscureText: false,
                 ),
                 const SizedBox(height: 15),
                 TextFieldGeneric(
                   textController: passwordCtrl,
-                  hintText: 'Contraseña',
-                  labelText: 'Contraseña',
+                  hintText: 'Password',
+                  labelText: 'Password',
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: _obscureText,
                   onPressed: () {
@@ -74,8 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                     final password = passwordCtrl.text.trim();
 
                     if (username.isEmpty || password.isEmpty) {
-                      mostrarAlerta(context, 'Campos vacíos',
-                          'Por favor, complete todos los campos');
+                      mostrarAlerta(context, 'Empty fields',
+                          'Please complete all fields');
                       return;
                     }
 
@@ -93,13 +93,31 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     } else {
                       mostrarAlerta(
-                          context, 'Login erróneo', 'Verifique sus datos');
+                          context, 'Wrong login', 'Check your details');
                     }
                   },
                   enabled: !authService.autenticando,
                   loading: authService.autenticando,
                 ),
                 const SizedBox(height: 15),
+                GestureDetector(
+                  onTap: () {
+                    // Agrega aquí la navegación a la pantalla de registro
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              HomePage()), // Reemplaza RegistroPage con tu página de registro
+                    );
+                  },
+                  child: Text(
+                    'You do not have an account? Sign up here.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
