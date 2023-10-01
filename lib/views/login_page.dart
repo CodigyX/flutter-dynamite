@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    'You do not have an account? Sign up here.',
+                    'You do not have an account? Sign up here',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.blue,
