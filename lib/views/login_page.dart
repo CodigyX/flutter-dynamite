@@ -6,6 +6,7 @@ import '../services/auth_service.dart';
 import '../widgets/alerts/alerta_generica.dart';
 import '../widgets/buttons/button_login.dart';
 import 'home_page.dart';
+import 'register_page.dart';
 
 // ignore: camel_case_types
 class LoginPage extends StatefulWidget {
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              HomePage()), // Reemplaza RegistroPage con tu página de registro
+                              RegisterPage()), // Reemplaza RegistroPage con tu página de registro
                     );
                   },
                   child: Text(
