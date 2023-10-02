@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/views/login_page.dart';
+import 'package:flutter_template/views/landing_page.dart';
 import 'package:provider/provider.dart';
 import 'pallete.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (_) => AuthService())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: LandingPage(),
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Pallete.backgroundColor,
           // Puedes personalizar otras propiedades del tema aquí
