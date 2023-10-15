@@ -7,7 +7,6 @@ import '../services/auth_service.dart';
 import '../widgets/alerts/alerta_generica.dart';
 import '../widgets/buttons/button_register.dart';
 import '../widgets/buttons/button_login.dart';
-import 'home_page.dart';
 import 'register_page.dart';
 
 class LandingPage extends StatefulWidget {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widgets/fields/textfield.dart';
 import 'package:provider/provider.dart';
-
+import 'DashboardPage.dart';
 import '../services/auth_service.dart';
 import '../widgets/alerts/alerta_generica.dart';
 import '../widgets/buttons/button_login.dart';
-import 'home_page.dart';
 import 'register_page.dart';
 
 // ignore: camel_case_types
@@ -87,10 +86,10 @@ class _LoginPageState extends State<LoginPage> {
                     authService.autenticando = false;
 
                     if (loginOk != null) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage()),
+                            builder: (context) => DashboardPage()),
                       );
                     } else {
                       mostrarAlerta(

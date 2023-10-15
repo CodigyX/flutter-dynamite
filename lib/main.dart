@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_template/views/DashboardPage.dart';
 import 'package:flutter_template/views/landing_page.dart';
 import 'package:flutter_template/views/login_page.dart';
 import 'package:provider/provider.dart';
