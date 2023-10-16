@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/pallete.dart';
+import 'package:flutter_template/views/landing_page.dart';
+import 'package:flutter_template/views/prediction_page.dart';
+import 'package:flutter_template/views/retrain_page.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -18,23 +21,45 @@ class _DashboardPageState extends State<DashboardPage> {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               child: Text('Menú'),
               decoration: BoxDecoration(
                 color: Pallete.gradient2,
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              leading: const Icon(Icons.person),
+              title: const Text('Perfil'),
+              onTap: () => onItemPressed(context, index: 0),
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('Acerca de'),
+              onTap: () => onItemPressed(context, index: 1),
+            ),
+            ListTile(
+              title: const Text('Model Prediction'),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PredictionPage()));
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: const Text('Retrain Model Prediction'),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DispatchScreen()));
               },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text('Cerrar sesion'),
+              onTap: () => onItemPressed(context, index: 2),
             ),
           ],
         ),
@@ -74,5 +99,22 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
       ),
     );
+  }
+
+  void onItemPressed(BuildContext context, {required int index}) {
+    Navigator.pop(context);
+    switch (index) {
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LandingPage()));
+        break;
+      default:
+        Navigator.pop(context);
+        break;
+    }
   }
 }
