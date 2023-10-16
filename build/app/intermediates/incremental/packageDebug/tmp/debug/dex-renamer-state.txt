@@ -1,4 +1,4 @@
-#Fri Oct 13 21:36:48 CST 2023
-base.0=D\:\\flutter-dynamite\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Sun Oct 15 00:25:19 CST 2023
+base.0=C\:\\Users\\bobyDev\\Documents\\Proyecto\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
